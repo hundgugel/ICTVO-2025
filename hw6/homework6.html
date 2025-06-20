@@ -1,1 +1,75 @@
-hj
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  	 <script src="../A-Frame/aframe.min.js"></script>
+  	 <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  </head>
+  <body>
+  	<script>
+  		let markerVisible = { A: false, B: false, C: false, D: false, F: false, G: false };
+		AFRAME.registerComponent('registerevents', {
+ 		init: function () {
+ 			let marker = this.el;
+ 			marker.addEventListener('markerFound', function() {
+ 				markerVisible[ marker.id ] = true;
+ 				console.log(marker,id, "знайдено")
+ 			});
+ 			marker.addEventListener('markerLost', function() {
+ 				markerVisible[ marker.id ] = false;
+ 				console.log(marker,id, "втрачено")
+ 			});
+ 			}
+		});
+	</script>
+
+    <a-scene vr-mode-ui="enabled: false;"
+    renderer="logarithmicDepthBuffer: true; precision: medium;"
+    embedded
+    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
+    
+
+    <a-marker type="pattern" url="../image/pattern-lettercA.patt" id="A" registerevents>
+    		<a-sphere color="red" radius="0.1"></a-box>
+    		<a-entity id="AB">/a-entity>
+    		<a-entity id="AC">/a-entity>
+			<a-entity id="AD">/a-entity>
+			<a-entity id="AF">/a-entity>
+			<a-entity id="AG">/a-entity>
+    </a-marker>
+    
+    <a-marker type="pattern" url="../image/pattern-lettercB..patt" id="B" registerevents>
+    		<a-sphere color="red" radiuss="0.1"></a-box>
+    		<a-entity id="BC">/a-entity>
+			<a-entity id="BD">/a-entity>
+			<a-entity id="BF">/a-entity>
+			<a-entity id="BG">/a-entity>
+    </a-marker>
+    
+    <a-marker type="pattern" url="../image/pattern-lettercC..patt" id="C" registerevents>
+    		<a-sphere color="red" radiuss="0.1"></a-box>
+    		<a-entity id="CD">/a-entity>
+			<a-entity id="CF">/a-entity>
+			<a-entity id="CG">/a-entity>
+    </a-marker>
+    
+    <a-marker type="pattern" url="../image/pattern-lettercD..patt" id="D" registerevents>
+    		<a-sphere color="red" radiuss="0.1"></a-box>
+    		<a-entity id="DF">/a-entity>
+			<a-entity id="DG">/a-entity>
+    </a-marker>
+    
+    <a-marker type="pattern" url="../image/pattern-lettercF..patt" id="F" registerevents>
+    		<a-sphere color="red" radiuss="0.1"></a-box>
+    		<a-entity id="FG">/a-entity>
+    </a-marker>
+    
+    <a-marker type="pattern" url="../image/pattern-lettercG..patt" id="G" registerevents>
+    		<a-sphere color="red" radiuss="0.1"></a-box>
+    </a-marker>
+    
+	 <a-entity camera></a-entity>
+	 
+    </a-scene>
+  </body>
+</html>
