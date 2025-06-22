@@ -13,23 +13,125 @@
  			let marker = this.el;
  			marker.addEventListener('markerFound', function() {
  				markerVisible[ marker.id ] = true;
- 				console.log(marker,id, "знайдено")
+ 				console.log(marker.id, "знайдено")
  			});
  			marker.addEventListener('markerLost', function() {
  				markerVisible[ marker.id ] = false;
- 				console.log(marker,id, "втрачено")
+ 				console.log(marker.id, "втрачено")
  			});
  			}
 		});
+		
+		let TempName = { A: THREE.Vector3(), B: THREE.Vector3(), C: THREE.Vector3(), D: THREE.Vector3(), F: THREE.Vector3(), G: THREE.Vector3() };
+		
+		AFRAME.registerComponent('run', {
+			init: function () {
+				A = document.getElementById("A").object3D;
+				B = document.getElementById("B").object3D;
+				C = document.getElementById("C").object3D;
+				D = document.getElementById("D").object3D;
+				F = document.getElementById("F").object3D;
+				G = document.getElementById("G").object3D;
+				
+				AB = document.getElementById("AB").object3D;
+				AC = document.getElementById("AC").object3D;
+				AD = document.getElementById("AD").object3D;
+				AF = document.getElementById("AF").object3D;
+				AG = document.getElementById("AG").object3D;
+				BC = document.getElementById("BC").object3D;
+				BD = document.getElementById("BD").object3D;
+				BF = document.getElementById("BF").object3D;
+				BG = document.getElementById("BG").object3D;
+				CD = document.getElementById("CD").object3D;
+				CF = document.getElementById("CF").object3D;
+				CG = document.getElementById("CG").object3D;
+				DF = document.getElementById("DG").object3D;
+				DG = document.getElementById("DG").object3D;
+				FG = document.getElementById("FG").object3D;
+				
+				let material = new THREE.MeshLambertMaterial({color:0xFF0000});
+				let geometry=new THREE.CylinderGeometry( 0.05, 0.05, 1, 12);
+				geometry.applyMatrix4( new THREE.Matrix4().makeTranslation(0, 0.5, 0 ) );
+ 				geometry.applyMatrix4( new THREE.Matrix4().makeRotationX(THREE.MathUtils.degToRad( 90 ) ) );
+				
+				
+				cAB = new THREE.Mesh( geometry, material ); AB.add( cAB ); cAB.visible = false;
+				cAC = new THREE.Mesh( geometry, material ); AC.add( cAC ); cAC.visible = false;
+				cAD = new THREE.Mesh( geometry, material ); AD.add( cAD ); cAD.visible = false;
+				cAF = new THREE.Mesh( geometry, material ); AF.add( cAF ); cAF.visible = false;
+				cAG = new THREE.Mesh( geometry, material ); AG.add( cAG ); cAG.visible = false;
+				cBC = new THREE.Mesh( geometry, material ); BC.add( cBC ); cBC.visible = false;
+				cBD = new THREE.Mesh( geometry, material ); BD.add( cBD ); cBD.visible = false;
+				cBF = new THREE.Mesh( geometry, material ); BF.add( cBF ); cBF.visible = false;
+				cBG = new THREE.Mesh( geometry, material ); BG.add( cBG ); cBG.visible = false;
+				cCD = new THREE.Mesh( geometry, material ); CD.add( cCD ); cCD.visible = false;
+				cCF = new THREE.Mesh( geometry, material ); CF.add( cCF ); cCF.visible = false;
+				cCG = new THREE.Mesh( geometry, material ); CG.add( cCG ); cCG.visible = false;
+				cDF = new THREE.Mesh( geometry, material ); DF.add( cDF ); cDF.visible = false;
+				cDG = new THREE.Mesh( geometry, material ); DG.add( cDG ); cDG.visible = false;
+				cFG = new THREE.Mesh( geometry, material ); FG.add( cFG ); cFG.visible = false;
+				
+ 
+ 
+			},
+			
+			tick: function () {
+				if(markerVisible["A"] && markerVisible["B"])  {
+					console.log("AB");			
+				}
+				if(markerVisible["A"] && markerVisible["C"])  {
+					console.log("AC");			
+				}
+				if(markerVisible["A"] && markerVisible["D"])  {
+					console.log("AD");			
+				}
+				if(markerVisible["A"] && markerVisible["F"])  {
+					console.log("AF");			
+				}
+				if(markerVisible["A"] && markerVisible["G"])  {
+					console.log("AG");			
+				}
+				if(markerVisible["B"] && markerVisible["C"])  {
+					console.log("BC");			
+				}
+				if(markerVisible["B"] && markerVisible["D"])  {
+					console.log("BD");			
+				}
+				if(markerVisible["B"] && markerVisible["F"])  {
+					console.log("BF");			
+				}
+				if(markerVisible["B"] && markerVisible["G"])  {
+					console.log("BG");			
+				}
+				if(markerVisible["C"] && markerVisible["D"])  {
+					console.log("CD");			
+				}
+				if(markerVisible["C"] && markerVisible["F"])  {
+					console.log("CF");			
+				}
+				if(markerVisible["C"] && markerVisible["G"])  {
+					console.log("CG");			
+				}
+				if(markerVisible["D"] && markerVisible["F"])  {
+					console.log("DF");			
+				}
+				if(markerVisible["D"] && markerVisible["G"])  {
+					console.log("DG");			
+				}
+				if(markerVisible["F"] && markerVisible["G"])  {
+					console.log("FG");			
+				}
+			},
+		});
+		
 	</script>
 
     <a-scene vr-mode-ui="enabled: false;"
     renderer="logarithmicDepthBuffer: true; precision: medium;"
     embedded
     arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
-    
 
-    <a-marker type="pattern" url="../image/pattern-lettercA.patt" id="A" registerevents>
+    <a-marker type="pattern" url="../image/pattern-letterA.patt" id="A" registerevents>
     		<a-sphere color="red" radius="0.1"></a-box>
     		<a-entity id="AB">/a-entity>
     		<a-entity id="AC">/a-entity>
@@ -38,37 +140,38 @@
 			<a-entity id="AG">/a-entity>
     </a-marker>
     
-    <a-marker type="pattern" url="../image/pattern-lettercB..patt" id="B" registerevents>
-    		<a-sphere color="red" radiuss="0.1"></a-box>
+    <a-marker type="pattern" url="../image/pattern-letterB.patt" id="B" registerevents>
+    		<a-sphere color="red" radius="0.1"></a-sphere>
     		<a-entity id="BC">/a-entity>
 			<a-entity id="BD">/a-entity>
 			<a-entity id="BF">/a-entity>
 			<a-entity id="BG">/a-entity>
     </a-marker>
     
-    <a-marker type="pattern" url="../image/pattern-lettercC..patt" id="C" registerevents>
-    		<a-sphere color="red" radiuss="0.1"></a-box>
+    <a-marker type="pattern" url="../image/pattern-letterC.patt" id="C" registerevents>
+    		<a-sphere color="red" radius="0.1"></a-sphere>
     		<a-entity id="CD">/a-entity>
 			<a-entity id="CF">/a-entity>
 			<a-entity id="CG">/a-entity>
     </a-marker>
     
-    <a-marker type="pattern" url="../image/pattern-lettercD..patt" id="D" registerevents>
-    		<a-sphere color="red" radiuss="0.1"></a-box>
+    <a-marker type="pattern" url="../image/pattern-letterD.patt" id="D" registerevents>
+    		<a-sphere color="red" radius="0.1"></a-sphere>
     		<a-entity id="DF">/a-entity>
 			<a-entity id="DG">/a-entity>
     </a-marker>
     
-    <a-marker type="pattern" url="../image/pattern-lettercF..patt" id="F" registerevents>
-    		<a-sphere color="red" radiuss="0.1"></a-box>
+    <a-marker type="pattern" url="../image/pattern-letterF.patt" id="F" registerevents>
+    		<a-sphere color="red" radius="0.1"></a-sphere>
     		<a-entity id="FG">/a-entity>
     </a-marker>
     
-    <a-marker type="pattern" url="../image/pattern-lettercG..patt" id="G" registerevents>
-    		<a-sphere color="red" radiuss="0.1"></a-box>
+    <a-marker type="pattern" url="../image/pattern-letterG.patt" id="G" registerevents>
+    		<a-sphere color="red" radius="0.1"></a-sphere>
     </a-marker>
     
 	 <a-entity camera></a-entity>
+	 <a-entity run></a-entity>
 	 
     </a-scene>
   </body>
